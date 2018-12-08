@@ -1,6 +1,7 @@
 package com.hanifcarroll.topics.Topic;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -16,10 +17,11 @@ public class TopicController {
     }
 
     @PostMapping({"/topics", "/topics/"})
-    public Topic createTopic(
+    public String createTopic(
             @RequestParam("title") String title,
             @RequestParam("description") String description,
-            @RequestParam("author") String author
+            @RequestParam("author") String author,
+            Model model
     ) {
         Topic newTopic = new Topic();
         newTopic.setTitle(title);
@@ -28,21 +30,32 @@ public class TopicController {
 
         topicRepository.save(newTopic);
 
-        return newTopic;
+        model.addAttribute("topic", newTopic);
+
+        return "show-topic";
     }
 
     @GetMapping({"/new", "/new/"})
     public String getNewPage() {
-        return "new-post";
+        return "new-topic";
     }
 
-    @GetMapping({"", "/"})
-    public List<Topic> getTopics() {
-        return topicRepository.findAllByOrderByCreatedAtDesc();
+    @GetMapping({"", "/", "/topics", "/topics/"})
+    public String getTopics(Model model) {
+        List<Topic> topics = topicRepository.findAllByOrderByCreatedAtDesc();
+
+        model.addAttribute("topics", topics);
+
+        return "index";
     }
 
     @GetMapping({"/topics/{id}", "/topics/{id}/"})
-    public Topic getTopic(@PathVariable("id") Long id) {
-        return topicRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    public String getTopic(@PathVariable("id") Long id, Model model) {
+
+        Topic topic = topicRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+
+        model.addAttribute("topic", topic);
+
+        return "show-topic";
     }
 }

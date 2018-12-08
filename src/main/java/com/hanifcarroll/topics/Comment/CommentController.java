@@ -2,11 +2,13 @@ package com.hanifcarroll.topics.Comment;
 
 import com.hanifcarroll.topics.Topic.Topic;
 import com.hanifcarroll.topics.Topic.TopicRepository;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 
-@RestController
+@Controller
 @RequestMapping("/api/comments")
 public class CommentController {
 
@@ -19,10 +21,11 @@ public class CommentController {
     }
 
     @PostMapping({"", "/"})
-    public Comment createComment(
+    public String createComment(
             @RequestParam("body") String body,
             @RequestParam("author") String author,
-            @RequestParam("topicId") Long topicId
+            @RequestParam("topicId") Long topicId,
+            Model model
     ) {
         Topic topic = topicRepository.findById(topicId).orElseThrow(EntityNotFoundException::new);
 
@@ -33,7 +36,9 @@ public class CommentController {
 
         commentRepository.save(newComment);
 
-        return newComment;
+        model.addAttribute("topic", topic);
+
+        return "show-topic";
     }
 
     @GetMapping({"/{id}", "/{id}/"})

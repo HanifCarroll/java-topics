@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Topics</title>
@@ -7,5 +7,12 @@
 <body>
     <h1>Topics</h1>
 
+    <ul>
+        <li th:each="topic: ${topics}" >
+            <a th:href="@{/topics/{id}(id=${topic.getId()})}" th:text="${topic.getTitle()}">
+
+            </a>
+        </li>
+    </ul>
 </body>
 </html>
