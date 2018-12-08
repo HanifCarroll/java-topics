@@ -1,6 +1,7 @@
 package com.hanifcarroll.topics.Topic;
 
 import com.hanifcarroll.topics.BaseEntity;
+import com.hanifcarroll.topics.Comment.Comment;
 
 import javax.persistence.*;
 import java.util.HashSet;
