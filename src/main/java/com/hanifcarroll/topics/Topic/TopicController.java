@@ -1,12 +1,12 @@
 package com.hanifcarroll.topics.Topic;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/topics")
+@Controller
 public class TopicController {
 
     private final TopicRepository topicRepository;
@@ -15,7 +15,7 @@ public class TopicController {
         this.topicRepository = topicRepository;
     }
 
-    @PostMapping({"", "/"})
+    @PostMapping({"/topics", "/topics/"})
     public Topic createTopic(
             @RequestParam("title") String title,
             @RequestParam("description") String description,
@@ -31,12 +31,17 @@ public class TopicController {
         return newTopic;
     }
 
+    @GetMapping({"/new", "/new/"})
+    public String getNewPage() {
+        return "new-post";
+    }
+
     @GetMapping({"", "/"})
     public List<Topic> getTopics() {
         return topicRepository.findAllByOrderByCreatedAtDesc();
     }
 
-    @GetMapping({"/{id}", "/{id}/"})
+    @GetMapping({"/topics/{id}", "/topics/{id}/"})
     public Topic getTopic(@PathVariable("id") Long id) {
         return topicRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
