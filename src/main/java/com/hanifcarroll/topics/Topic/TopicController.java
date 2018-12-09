@@ -33,6 +33,7 @@ public class TopicController {
         topicRepository.save(newTopic);
 
         redirectAttributes.addFlashAttribute("topic", newTopic);
+        redirectAttributes.addFlashAttribute("message", "Topic created!");
         return "redirect:/topics/" + newTopic.getId();
     }
 
