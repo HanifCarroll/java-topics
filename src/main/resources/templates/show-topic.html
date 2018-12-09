@@ -10,26 +10,34 @@
 </head>
 <body>
     <div layout:fragment="content">
-        <h1 th:text="${topic.getTitle()}"></h1>
+        <h3 th:text="${topic.getTitle()}"></h3>
+        <p class="mb-0 font-weight-bold" th:text="${topic.getAuthor()}"></p>
         <p th:text="${topic.getDescription()}"></p>
-        <p th:text="${topic.getAuthor()}"></p>
 
-        <div class="comments" th:if="${not #lists.isEmpty(topic.getComments())}">
+        <div class="comments mb-5" th:if="${not #lists.isEmpty(topic.getComments())}">
             <div class="comment" th:each="comment: ${topic.getComments()}">
-                <p th:text="${comment.getAuthor()}"></p>
-                <p th:text="${comment.getBody()}"></p>
+                <div class="list-group-item">
+                    <p class="card-title font-weight-bold" th:text="${comment.getAuthor()}"></p>
+                    <p class="card-text" th:text="${comment.getBody()}"></p>
+                </div>
             </div>
         </div>
+
         <div class="new-comment">
             <form action="/api/comments/" method="post">
                 <input type="hidden" name="topicId" th:value="${topic.getId()}">
-                <label for="author">Author</label>
-                <input type="text" name="author" id="author">
 
-                <label for="comment-body">Comment</label>
-                <textarea name="body" id="comment-body" cols="30" rows="10"></textarea>
+                <div class="form-group">
+                    <label for="author">Name</label>
+                    <input class="form-control" type="text" name="author" id="author">
+                </div>
 
-                <input type="submit" value="Add Comment">
+                <div class="form-group">
+                    <label for="comment-body">Comment</label>
+                    <textarea class="form-control" name="body" id="comment-body" cols="30" rows="10"></textarea>
+                </div>
+
+                <input class="btn btn-primary" type="submit" value="Add Comment">
             </form>
         </div>
     </div>
