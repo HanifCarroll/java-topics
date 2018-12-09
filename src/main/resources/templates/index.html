@@ -13,11 +13,11 @@
         <h1>Topics</h1>
 
         <ul class="list-group list-group-flush">
-            <li th:each="topic: ${topics}" class="d-flex flex-row list-group-item justify-content-between">
+            <li th:each="topic: ${topics}" class="d-flex flex-row list-group-item align-items-center justify-content-between">
                 <a th:href="@{/topics/{id}(id=${topic.getId()})}" th:text="${topic.getTitle()}">
                 </a>
                     <span
-                            class="badge badge-primary badge-pill"
+                            class=" badge badge-primary badge-pill"
                             th:text="${topic.countComments()}"
                     >
                     </span>
