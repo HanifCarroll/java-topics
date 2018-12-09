@@ -1,3 +1,6 @@
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
 .list-group-item a{
     color: black;
 }
