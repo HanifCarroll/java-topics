@@ -22,7 +22,6 @@ public class TopicController {
             @RequestParam("title") String title,
             @RequestParam("description") String description,
             @RequestParam("author") String author,
-            Model model,
             RedirectAttributes redirectAttributes
     ) {
         Topic newTopic = new Topic();
@@ -33,7 +32,7 @@ public class TopicController {
         topicRepository.save(newTopic);
 
         redirectAttributes.addFlashAttribute("topic", newTopic);
-        redirectAttributes.addFlashAttribute("message", "Topic created!");
+        redirectAttributes.addFlashAttribute("message", "Topic created");
         return "redirect:/topics/" + newTopic.getId();
     }
 

@@ -5,6 +5,7 @@ import com.hanifcarroll.topics.Topic.TopicRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -25,7 +26,7 @@ public class CommentController {
             @RequestParam("body") String body,
             @RequestParam("author") String author,
             @RequestParam("topicId") Long topicId,
-            Model model
+            RedirectAttributes redirectAttributes
     ) {
         Topic topic = topicRepository.findById(topicId).orElseThrow(EntityNotFoundException::new);
 
@@ -36,9 +37,8 @@ public class CommentController {
 
         commentRepository.save(newComment);
 
-        model.addAttribute("topic", topic);
-
-        return "show-topic";
+        redirectAttributes.addFlashAttribute("message", "Comment created");
+        return "redirect:/topics/" + topicId;
     }
 
     @GetMapping({"/{id}", "/{id}/"})
