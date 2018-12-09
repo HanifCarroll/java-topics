@@ -21,6 +21,7 @@ public class Topic extends BaseEntity {
     private String author;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "topic")
+    @OrderBy("createdAt ASC")
     private Set<Comment> comments = new HashSet<>();
 
     public Topic() {
