@@ -18,8 +18,6 @@ public class CustomErrorController implements ErrorController {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         Object error = request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
 
-        System.out.println("status" + status);
-        System.out.println("error" + error);
         if (status != null) {
             int statusCode = Integer.valueOf(status.toString());
             String message;

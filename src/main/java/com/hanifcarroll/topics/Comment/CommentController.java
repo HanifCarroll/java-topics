@@ -37,7 +37,7 @@ public class CommentController {
 
         commentRepository.save(newComment);
 
-        redirectAttributes.addFlashAttribute("message", "Comment created");
+        redirectAttributes.addFlashAttribute("msg-success", "Comment created");
         return "redirect:/topics/" + topicId;
     }
 

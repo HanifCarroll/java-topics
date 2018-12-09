@@ -2,10 +2,12 @@ package com.hanifcarroll.topics.Topic;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.persistence.EntityNotFoundException;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -19,11 +21,20 @@ public class TopicController {
 
     @PostMapping({"/topics", "/topics/"})
     public String createTopic(
+            @Valid Topic topic,
+            BindingResult bindingResult,
             @RequestParam("title") String title,
             @RequestParam("description") String description,
             @RequestParam("author") String author,
-            RedirectAttributes redirectAttributes
+            RedirectAttributes redirectAttributes,
+            Model model
     ) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("topic", topic);
+
+            return "new-topic";
+        }
+
         Topic newTopic = new Topic();
         newTopic.setTitle(title.trim());
         newTopic.setAuthor(author.trim());
@@ -37,7 +48,9 @@ public class TopicController {
     }
 
     @GetMapping({"/new", "/new/"})
-    public String getNewPage() {
+    public String getNewPage(Model model) {
+        model.addAttribute("topic", new Topic());
+
         return "new-topic";
     }
 

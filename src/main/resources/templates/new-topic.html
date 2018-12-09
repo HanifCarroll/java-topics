@@ -2,6 +2,7 @@
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}"
+      xmlns:th="http://www.thymeleaf.org"
 >
 <head>
     <title>New Topic</title>
@@ -9,20 +10,22 @@
 <body>
     <div layout:fragment="content">
         <h1 class="mb-3">New Topic</h1>
-        <form action="/topics" method="post">
+        <form action="/topics" th:action="@{/topics}" th:object="${topic}" method="post">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input class="form-control" type="text" id="title" name="title">
+                <input class="form-control" th:value="${topic.getTitle()}" type="text" id="title" name="title">
+                <p th:if="${#fields.hasErrors('title')}" class="text-danger">Title must be 150 characters or less.</p>
             </div>
 
             <div class="form-group">
                 <label for="author">Author</label>
-                <input class="form-control" type="text" id="author" name="author">
+                <input class="form-control" th:value="${topic.getAuthor()}" type="text" id="author" name="author">
+                <p th:if="${#fields.hasErrors('author')}" class="text-danger">Name must be 20 characters or less.</p>
             </div>
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
+                <textarea class="form-control" th:value="${topic.getDescription()}" name="description" id="description" cols="30" rows="10"></textarea>
             </div>
 
             <input class="btn btn-primary" type="submit" value="Create">
