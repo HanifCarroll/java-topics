@@ -2,6 +2,8 @@ package com.hanifcarroll.topics;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.ocpsoft.prettytime.PrettyTime;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -32,6 +34,10 @@ public class BaseEntity {
 
     public Date getCreatedAt() {
         return createdAt;
+    }
+
+    public String getPrettyCreatedAt() {
+        return new PrettyTime().format(this.createdAt);
     }
 
     public void setCreatedAt(Date createdAt) {

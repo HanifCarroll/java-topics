@@ -1,3 +1,7 @@
 .list-group-item a{
     color: black;
 }
+
+.topic-author {
+    font-size: 0.9em;
+}

@@ -14,8 +14,10 @@
             <div class="card-body">
                 <h3 class="card-title mb-0" th:text="${topic.getTitle()}"></h3>
                 <div class="">
-                    <p class="mb-2 font-weight-light">
-                        Submitted by <span th:text="${topic.getAuthor()}"></span>
+                    <p class="topic-author mb-2 font-weight-light">
+                        Submitted by
+                        <span th:text="${topic.getAuthor()}"></span>
+                        <span th:text="${topic.getPrettyCreatedAt()}"></span>
                     </p>
                     <p th:text="${topic.getDescription()}"></p>
                 </div>
@@ -26,6 +28,7 @@
             <div class="comment" th:each="comment: ${topic.getComments()}">
                 <div class="list-group-item">
                     <p class="card-title font-weight-bold" th:text="${comment.getAuthor()}"></p>
+                    <p class="card-text" th:text="${comment.getPrettyCreatedAt()}"></p>
                     <p class="card-text" th:text="${comment.getBody()}"></p>
                 </div>
             </div>
