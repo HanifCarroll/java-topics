@@ -10,12 +10,16 @@
 </head>
 <body>
     <div layout:fragment="content">
-        <div class="topic mb-5">
-            <h3 class="mb-0" th:text="${topic.getTitle()}"></h3>
-            <p class="mb-0">
-                Submitted by <span th:text="${topic.getAuthor()}"></span>
-            </p>
-            <p th:text="${topic.getDescription()}"></p>
+        <div class="card mb-5">
+            <div class="card-body">
+                <h3 class="card-title mb-0" th:text="${topic.getTitle()}"></h3>
+                <div class="">
+                    <p class="mb-2 font-weight-light">
+                        Submitted by <span th:text="${topic.getAuthor()}"></span>
+                    </p>
+                    <p th:text="${topic.getDescription()}"></p>
+                </div>
+            </div>
         </div>
 
         <div class="comments mb-5" th:if="${not #lists.isEmpty(topic.getComments())}">
