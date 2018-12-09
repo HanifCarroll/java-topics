@@ -10,7 +10,10 @@
 <body>
 
     <div layout:fragment="content">
-        <h1>Topics</h1>
+        <div class="d-flex flex-row justify-content-between">
+            <h5 class="title">Title</h5>
+            <h5 class="title">Comments</h5>
+        </div>
 
         <ul class="list-group list-group-flush">
             <li th:each="topic: ${topics}" class="d-flex flex-row list-group-item align-items-center justify-content-between">

@@ -2,6 +2,14 @@
     color: black;
 }
 
+.title {
+}
+
+@media only screen and (min-width: 768px) {
+    .title {
+        font-size: 1.5em;
+    }
+}
 .topic-subheading {
     font-size: 0.9em;
 }
