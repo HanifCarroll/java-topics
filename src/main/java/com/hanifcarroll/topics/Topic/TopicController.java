@@ -26,7 +26,7 @@ public class TopicController {
         Topic newTopic = new Topic();
         newTopic.setTitle(title.trim());
         newTopic.setAuthor(author.trim());
-        newTopic.setDescription(description.trim());
+        newTopic.setDescription(description);
 
         topicRepository.save(newTopic);
 

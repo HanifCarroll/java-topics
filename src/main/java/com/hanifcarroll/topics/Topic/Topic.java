@@ -4,6 +4,8 @@ import com.hanifcarroll.topics.BaseEntity;
 import com.hanifcarroll.topics.Comment.Comment;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,13 +13,16 @@ import java.util.Set;
 @Table(name = "topic")
 public class Topic extends BaseEntity {
 
+    @NotBlank
     @Column(name = "title")
+    @Size(max = 150)
     private String title;
 
     @Column(name = "description")
     private String description;
 
     @Column(name = "author")
+    @Size(max = 20)
     private String author;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "topic")

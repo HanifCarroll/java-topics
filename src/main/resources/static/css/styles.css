@@ -13,3 +13,7 @@
 .topic-subheading {
     font-size: 0.9em;
 }
+
+.topic-description, .comment-description {
+    white-space: pre-wrap ;
+}

@@ -18,7 +18,7 @@
                         <span th:text="${topic.getAuthor()}"></span>
                         <span th:text="${topic.getPrettyCreatedAt()}"></span>
                     </p>
-                    <p th:text="${topic.getDescription()}"></p>
+                    <p class="topic-description" th:text="${topic.getDescription()}"></p>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 <div class="list-group-item">
                     <p class="card-title mb-0 font-weight-bold" th:text="${comment.getAuthor()}"></p>
                     <p class="card-text mb-3 topic-subheading font-weight-light" th:text="${comment.getPrettyCreatedAt()}"></p>
-                    <p class="card-text" th:text="${comment.getBody()}"></p>
+                    <p class="card-text comment-description" th:text="${comment.getBody()}"></p>
                 </div>
             </div>
         </div>

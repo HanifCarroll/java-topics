@@ -5,15 +5,19 @@ import com.hanifcarroll.topics.BaseEntity;
 import com.hanifcarroll.topics.Topic.Topic;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "comment")
 public class Comment extends BaseEntity {
 
     @Column(name = "author")
+    @Size(max = 20)
     private String author;
 
+    @NotBlank
     @Column(name = "body")
     private String body;
 
@@ -48,5 +52,12 @@ public class Comment extends BaseEntity {
 
     public void setTopic(Topic topic) {
         this.topic = topic;
+    }
+
+    @PrePersist
+    public void preInsert() {
+        if (this.author.trim().equals("")) {
+            this.author = "Anonymous";
+        }
     }
 }
