@@ -57,4 +57,8 @@ public class Topic extends BaseEntity {
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
     }
+
+    public int countComments() {
+        return this.comments.size();
+    }
 }

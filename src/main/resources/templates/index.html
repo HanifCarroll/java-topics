@@ -12,11 +12,15 @@
     <div layout:fragment="content">
         <h1>Topics</h1>
 
-        <ul>
-            <li th:each="topic: ${topics}" >
+        <ul class="list-group list-group-flush">
+            <li th:each="topic: ${topics}" class="d-flex flex-row list-group-item justify-content-between">
                 <a th:href="@{/topics/{id}(id=${topic.getId()})}" th:text="${topic.getTitle()}">
-
                 </a>
+                    <span
+                            class="badge badge-primary badge-pill"
+                            th:text="${topic.countComments()}"
+                    >
+                    </span>
             </li>
         </ul>
     </div>
