@@ -12,9 +12,9 @@
     <div layout:fragment="content">
         <div class="card mb-5">
             <div class="card-body">
-                <h3 class="card-title mb-0" th:text="${topic.getTitle()}"></h3>
+                <h3 class="card-title mb-1" th:text="${topic.getTitle()}"></h3>
                 <div class="">
-                    <p class="topic-subheading mb-2 font-weight-light">
+                    <p class="topic-subheading mb-3 font-weight-light">
                         Submitted by
                         <span th:text="${topic.getAuthor()}"></span>
                         <span th:text="${topic.getPrettyCreatedAt()}"></span>
@@ -28,7 +28,7 @@
             <div class="comment" th:each="comment: ${topic.getComments()}">
                 <div class="list-group-item">
                     <p class="card-title mb-0 font-weight-bold" th:text="${comment.getAuthor()}"></p>
-                    <p class="card-text mb-2 topic-subheading" th:text="${comment.getPrettyCreatedAt()}"></p>
+                    <p class="card-text mb-3 topic-subheading" th:text="${comment.getPrettyCreatedAt()}"></p>
                     <p class="card-text" th:text="${comment.getBody()}"></p>
                 </div>
             </div>
