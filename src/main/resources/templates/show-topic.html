@@ -1,32 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}"
+>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Topics | View Topic</title>
+    <title>View Topic</title>
 </head>
 <body>
-    <h1 th:text="${topic.getTitle()}"></h1>
-    <p th:text="${topic.getDescription()}"></p>
-    <p th:text="${topic.getAuthor()}"></p>
+    <div layout:fragment="content">
+        <h1 th:text="${topic.getTitle()}"></h1>
+        <p th:text="${topic.getDescription()}"></p>
+        <p th:text="${topic.getAuthor()}"></p>
 
-    <div class="comments" th:if="${not #lists.isEmpty(topic.getComments())}">
-        <div class="comment" th:each="comment: ${topic.getComments()}">
-            <p th:text="${comment.getAuthor()}"></p>
-            <p th:text="${comment.getBody()}"></p>
+        <div class="comments" th:if="${not #lists.isEmpty(topic.getComments())}">
+            <div class="comment" th:each="comment: ${topic.getComments()}">
+                <p th:text="${comment.getAuthor()}"></p>
+                <p th:text="${comment.getBody()}"></p>
+            </div>
         </div>
-    </div>
-    <div class="new-comment">
-        <form action="/api/comments/" method="post">
-            <input type="hidden" name="topicId" th:value="${topic.getId()}">
-            <label for="author">Author</label>
-            <input type="text" name="author" id="author">
+        <div class="new-comment">
+            <form action="/api/comments/" method="post">
+                <input type="hidden" name="topicId" th:value="${topic.getId()}">
+                <label for="author">Author</label>
+                <input type="text" name="author" id="author">
 
-            <label for="comment-body">Comment</label>
-            <textarea name="body" id="comment-body" cols="30" rows="10"></textarea>
+                <label for="comment-body">Comment</label>
+                <textarea name="body" id="comment-body" cols="30" rows="10"></textarea>
 
-            <input type="submit" value="Add Comment">
-        </form>
+                <input type="submit" value="Add Comment">
+            </form>
+        </div>
     </div>
 </body>
 </html>
