@@ -3,6 +3,7 @@ package com.hanifcarroll.topics.Topic;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -21,7 +22,8 @@ public class TopicController {
             @RequestParam("title") String title,
             @RequestParam("description") String description,
             @RequestParam("author") String author,
-            Model model
+            Model model,
+            RedirectAttributes redirectAttributes
     ) {
         Topic newTopic = new Topic();
         newTopic.setTitle(title.trim());
@@ -30,9 +32,8 @@ public class TopicController {
 
         topicRepository.save(newTopic);
 
-        model.addAttribute("topic", newTopic);
-
-        return "show-topic";
+        redirectAttributes.addFlashAttribute("topic", newTopic);
+        return "redirect:/topics/" + newTopic.getId();
     }
 
     @GetMapping({"/new", "/new/"})
