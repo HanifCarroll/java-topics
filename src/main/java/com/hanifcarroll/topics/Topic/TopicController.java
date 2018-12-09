@@ -24,9 +24,9 @@ public class TopicController {
             Model model
     ) {
         Topic newTopic = new Topic();
-        newTopic.setTitle(title);
-        newTopic.setAuthor(author);
-        newTopic.setDescription(description);
+        newTopic.setTitle(title.trim());
+        newTopic.setAuthor(author.trim());
+        newTopic.setDescription(description.trim());
 
         topicRepository.save(newTopic);
 

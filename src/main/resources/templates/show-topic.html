@@ -28,7 +28,7 @@
             <div class="comment" th:each="comment: ${topic.getComments()}">
                 <div class="list-group-item">
                     <p class="card-title mb-0 font-weight-bold" th:text="${comment.getAuthor()}"></p>
-                    <p class="card-text mb-3 topic-subheading" th:text="${comment.getPrettyCreatedAt()}"></p>
+                    <p class="card-text mb-3 topic-subheading font-weight-light" th:text="${comment.getPrettyCreatedAt()}"></p>
                     <p class="card-text" th:text="${comment.getBody()}"></p>
                 </div>
             </div>

@@ -30,8 +30,8 @@ public class CommentController {
         Topic topic = topicRepository.findById(topicId).orElseThrow(EntityNotFoundException::new);
 
         Comment newComment = new Comment();
-        newComment.setBody(body);
-        newComment.setAuthor(author);
+        newComment.setBody(body.trim());
+        newComment.setAuthor(author.trim());
         newComment.setTopic(topic);
 
         commentRepository.save(newComment);

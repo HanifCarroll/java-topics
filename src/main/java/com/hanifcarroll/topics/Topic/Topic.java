@@ -62,4 +62,11 @@ public class Topic extends BaseEntity {
     public int countComments() {
         return this.comments.size();
     }
+
+    @PrePersist
+    public void preInsert() {
+        if (this.author.trim().equals("")) {
+            this.author = "Anonymous";
+        }
+    }
 }
