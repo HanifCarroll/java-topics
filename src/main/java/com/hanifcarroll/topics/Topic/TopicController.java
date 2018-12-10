@@ -1,5 +1,6 @@
 package com.hanifcarroll.topics.Topic;
 
+import com.hanifcarroll.topics.Comment.Comment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,12 +27,9 @@ public class TopicController {
             @RequestParam("title") String title,
             @RequestParam("description") String description,
             @RequestParam("author") String author,
-            RedirectAttributes redirectAttributes,
-            Model model
+            RedirectAttributes redirectAttributes
     ) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("topic", topic);
-
             return "new-topic";
         }
 
@@ -43,7 +41,7 @@ public class TopicController {
         topicRepository.save(newTopic);
 
         redirectAttributes.addFlashAttribute("topic", newTopic);
-        redirectAttributes.addFlashAttribute("message", "Topic created");
+        redirectAttributes.addFlashAttribute("success", "Topic created");
         return "redirect:/topics/" + newTopic.getId();
     }
 
@@ -69,7 +67,7 @@ public class TopicController {
         Topic topic = topicRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 
         model.addAttribute("topic", topic);
-
+        model.addAttribute("comment", new Comment());
         return "show-topic";
     }
 }
