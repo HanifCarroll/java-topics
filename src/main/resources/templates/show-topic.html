@@ -34,8 +34,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="body">Comment</label>
-                    <textarea th:value="${comment.getBody()}" class="form-control" name="body" id="body" cols="30" rows="10"></textarea>
+                    <label for="comment-body">Comment</label>
+                    <textarea required th:value="${comment.getBody()}" class="form-control" name="body" id="comment-body" cols="30" rows="10"></textarea>
                     <p th:if="${#fields.hasErrors('body')}" class="text-danger">Comment cannot be blank.</p>
                 </div>
 

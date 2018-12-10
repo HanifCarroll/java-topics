@@ -23,8 +23,6 @@ public class Comment extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id", referencedColumnName = "id")
-    @NotNull
-    @JsonIgnore
     private Topic topic;
 
     public Comment() {

@@ -89,11 +89,11 @@ public class TopicController {
     public String createComment(
             @Valid Comment comment,
             BindingResult bindingResult,
+            Model model,
             @RequestParam("body") String body,
             @RequestParam("author") String author,
             @PathVariable("id") Long topicId,
-            RedirectAttributes redirectAttributes,
-            Model model
+            RedirectAttributes redirectAttributes
     ) {
         Topic topic = topicService.findById(topicId);
 
