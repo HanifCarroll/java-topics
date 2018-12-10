@@ -16,7 +16,7 @@
         </div>
 
         <ul class="list-group list-group-flush">
-            <li th:each="topic: ${topics}" class="d-flex flex-row list-group-item align-items-center justify-content-between">
+            <li th:each="topic: ${topicPage.content}" class="d-flex flex-row list-group-item align-items-center justify-content-between">
                 <a th:href="@{/topics/{id}(id=${topic.getId()})}" th:text="${topic.getTitle()}">
                 </a>
                     <span
@@ -26,6 +26,18 @@
                     </span>
             </li>
         </ul>
+
+        <div th:if="${topicPage.totalPages > 0}" class="page-container"
+             th:each="pageNumber : ${pageNumbers}">
+            <div class="pagination" th:switch="${pageNumber}">
+                <p th:case="${topicPage.number + 1}" th:text="${pageNumber}"></p>
+                <a th:case="*"
+                   th:href="@{/topics(size=${topicPage.size}, page=${pageNumber})}"
+                   th:text="${pageNumber}"
+               th:class="${pageNumber==topicPage.number + 1} ? active-page">
+                </a>
+            </div>
+        </div>
     </div>
 </body>
 </html>

@@ -5,7 +5,12 @@
     color: black;
 }
 
-.title {
+.page-container {
+    display: inline-flex;
+
+}
+.pagination {
+    display: inline;
 }
 
 @media only screen and (min-width: 768px) {
@@ -13,6 +18,7 @@
         font-size: 1.5em;
     }
 }
+
 .topic-subheading {
     font-size: 0.9em;
 }

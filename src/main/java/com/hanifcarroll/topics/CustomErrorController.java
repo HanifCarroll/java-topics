@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Enumeration;
 
 @Controller
 public class CustomErrorController implements ErrorController {
@@ -29,7 +28,7 @@ public class CustomErrorController implements ErrorController {
             } else {
                 message = "An error occurred.";
             }
-           model.addAttribute("message", message);
+            model.addAttribute("message", message);
         }
         return "error";
     }

@@ -30,6 +30,12 @@ public class Comment extends BaseEntity {
     public Comment() {
     }
 
+    public Comment(@Size(max = 20) String author, @NotBlank String body, @NotNull Topic topic) {
+        this.author = author;
+        this.body = body;
+        this.topic = topic;
+    }
+
     public String getAuthor() {
         return author;
     }

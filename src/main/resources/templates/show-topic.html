@@ -26,9 +26,7 @@
         </div>
 
         <div class="new-comment mb-5">
-            <form action="/api/comments/" th:action="@{/api/comments}" th:object="${comment}" method="post">
-                <input type="hidden" name="topicId" th:value="${topic.getId()}">
-
+            <form th:action="@{/topics/{id}(id=${topic.getId()})}" th:object="${comment}" th:method="post" method="post">
                 <div class="form-group">
                     <label for="author">Name</label>
                     <input th:value="${comment.getAuthor()}" class="form-control" type="text" name="author" id="author">
@@ -36,8 +34,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="comment-body">Comment</label>
-                    <textarea th:value="${comment.getBody()}" class="form-control" name="body" id="comment-body" cols="30" rows="10"></textarea>
+                    <label for="body">Comment</label>
+                    <textarea th:value="${comment.getBody()}" class="form-control" name="body" id="body" cols="30" rows="10"></textarea>
                     <p th:if="${#fields.hasErrors('body')}" class="text-danger">Comment cannot be blank.</p>
                 </div>
 
