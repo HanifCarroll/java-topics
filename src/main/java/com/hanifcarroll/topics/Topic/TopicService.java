@@ -38,7 +38,7 @@ public class TopicService {
         int currentPage = pageable.getPageNumber();
         int startItem = currentPage * pageSize;
         List<Topic> topicList;
-        List<Topic> allTopics = topicRepository.findAllByOrderByCreatedAtDesc();
+        List<Topic> allTopics = topicRepository.findAllByOrderByUpdatedAtDesc();
 
         if (allTopics.size() < startItem) {
             topicList = Collections.emptyList();

@@ -27,7 +27,7 @@
             </li>
         </ul>
 
-        <div th:if="${topicPage.totalPages > 0}" class="page-container"
+        <div th:if="${topicPage.totalPages > 1}" class="page-container"
              th:each="pageNumber : ${pageNumbers}">
             <div class="pagination" th:switch="${pageNumber}">
                 <p th:case="${topicPage.number + 1}" th:text="${pageNumber}"></p>
